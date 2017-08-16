@@ -56,7 +56,8 @@ var udhcpc = module.exports = {
  *
  */
 function disable(interface, callback) {
-  var command = 'kill `pgrep -f "^udhcpc -i ' + interface + '"` || true';
+  var command = 'dhclient -r ' + interface;
+  // OLD: var command = 'kill `pgrep -f "^udhcpc -i ' + interface + '"` || true';
   return this.exec(command, callback);
 }
 
@@ -83,6 +84,7 @@ function disable(interface, callback) {
  *
  */
 function enable(options, callback) {
-  var command = 'udhcpc -i ' + options.interface + ' -n';
+  var command = 'dhclient -4 ' + options.interface;
+  // OLD: var command = 'udhcpc -i ' + options.interface + ' -n';
   return this.exec(command, callback);  
 }
