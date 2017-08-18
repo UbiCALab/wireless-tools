@@ -56,7 +56,7 @@ var udhcpc = module.exports = {
  *
  */
 function disable(interface, callback) {
-  var command = 'dhclient -r ' + interface;
+  var command = 'dhclient -r ' + interface + ' & pkill wlan0';
   // OLD: var command = 'kill `pgrep -f "^udhcpc -i ' + interface + '"` || true';
   return this.exec(command, callback);
 }

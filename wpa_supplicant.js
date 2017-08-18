@@ -57,8 +57,8 @@ var wpa_supplicant = module.exports = {
  *
  */
 function disable(interface, callback) {
-  var command = 'kill `pgrep -f "wpa_supplicant -i ' +
-    interface + ' .*"` || true';
+  var command = 'pkill wpa_supplicant & (kill `pgrep -f "wpa_supplicant -i ' +
+    interface + ' .*"` || true)';
 
   return this.exec(command, callback);
 }
