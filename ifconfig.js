@@ -241,9 +241,19 @@ function down(interface, callback) {
  *
  */
 function up(options, callback) {
+  var upCmd = 'ifconfig ' + options.interface;
+  if (options.ipv4_address)
+    upCmd += ' ' + options.ipv4_address;
+  if (options.ipv4_subnet_mask)
+    upCmd += ' netmask  ' + options.ipv4_subnet_mask;
+  if (options.ipv4_broadcast)
+    upCmd += ' broadcast ' + options.ipv4_broadcast;
+  upCmd += ' up';
+  return this.exec(upCmd, callback);
+  /*
   return this.exec('ifconfig ' + options.interface +
     ' ' + options.ipv4_address +
     ' netmask ' + options.ipv4_subnet_mask +
     ' broadcast ' + options.ipv4_broadcast +
-    ' up', callback);
+    ' up', callback);*/
 }
