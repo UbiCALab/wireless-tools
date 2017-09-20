@@ -58,7 +58,7 @@ var wpa_supplicant = module.exports = {
  */
 function disable(interface, callback) {
   var command = 'pkill wpa_supplicant & (kill `pgrep -f "wpa_supplicant -i ' +
-    interface + ' .*"` || true)';
+    interface + ' .*"` || true) echo "" > /etc/wpa_supplicant/wpa_supplicant.wireless-tools.conf)';
 
   return this.exec(command, callback);
 }
